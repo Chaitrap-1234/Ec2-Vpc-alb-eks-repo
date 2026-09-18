@@ -29,7 +29,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name                                        = "${var.project_name}-public-${count.index + 1}"
+    Name = "${var.project_name}-public-${count.index + 1}"
     # Required tags so EKS/ELB controller can discover these subnets
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
     "kubernetes.io/role/elb"                    = "1"
