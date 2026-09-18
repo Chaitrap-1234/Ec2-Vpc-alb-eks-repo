@@ -39,13 +39,13 @@ variable "cluster_name" {
 variable "eks_node_instance_type" {
   description = "Instance type for the single EKS worker node"
   type        = string
-  default     = "t3.medium" # smallest type AWS supports well for EKS-optimized AMI
+  default     = "t3.micro" # smallest type AWS supports well for EKS-optimized AMI
 }
 
 variable "ec2_instance_type" {
   description = "Instance type for the standalone EC2 instance (behind the NLB)"
   type        = string
-  default     = "t2.micro" # free-tier eligible
+  default     = "t3.micro" # free-tier eligible
 }
 
 variable "key_name" {
