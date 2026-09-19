@@ -1,6 +1,4 @@
-############################################
-# Network Load Balancer (internet-facing, Layer 4)
-############################################
+
 resource "aws_lb" "nlb" {
   name               = "${var.project_name}-nlb"
   internal           = false

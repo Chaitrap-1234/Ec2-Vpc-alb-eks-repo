@@ -25,7 +25,7 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
 resource "aws_eks_cluster" "main" {
   name     = var.cluster_name
   role_arn = aws_iam_role.eks_cluster_role.arn
-  version  = "1.34"
+  version  = "1.30"
 
   vpc_config {
     subnet_ids              = aws_subnet.public[*].id
@@ -81,6 +81,10 @@ resource "aws_eks_node_group" "main" {
   subnet_ids      = aws_subnet.public[*].id
   instance_types  = [var.eks_node_instance_type]
   capacity_type   = "ON_DEMAND"
+
+  # AWS stopped publishing AL2 EKS-optimized AMIs on Nov 26, 2025, so the
+  # AL2_x86_64 default no longer works for new node groups. Use AL2023.
+  ami_type = "AL2023_x86_64_STANDARD"
 
   scaling_config {
     desired_size = 1
